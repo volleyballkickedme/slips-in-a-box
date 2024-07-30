@@ -4,11 +4,9 @@ import SlipStack from'../Components/SlipStack.jsx'
 import Generate from '../Components/Generate.jsx'
 import { doc, getDoc } from 'firebase/firestore'
 import { auth } from '../Components/firebase.js'
-import { useNavigate } from 'react-router-dom'
 import { db } from '../Components/firebase.js'
 
 const Homepage = () => {
-  const navigate = useNavigate()
   const [userDetails, setUserDetails] = useState(null)
   const fetchUserData = async () =>  {
     auth.onAuthStateChanged(async (user) => {
@@ -27,15 +25,6 @@ const Homepage = () => {
     fetchUserData()
   }, [])
 
-  async function handleLogout() {
-    try {
-      await auth.signOut()
-      navigate('/signin')
-    }
-    catch (error) {
-      console.log(error.message)
-    }
-  }
   /*array of size 4, with indices mapped as follows
   0: bfast
   1: lunch
@@ -48,7 +37,7 @@ const Homepage = () => {
     <div>
       { userDetails ?
         <>
-          <Hero username={userDetails.username}/>
+          <Hero username={ userDetails.username }/>
           <SlipStack />
           <Generate />
         </> :

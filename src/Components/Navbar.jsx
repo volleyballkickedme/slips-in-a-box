@@ -1,7 +1,18 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { auth } from './firebase'
 
 const Navbar = () => {
+    const navigate = useNavigate()
+    async function handleLogout() {
+        try {
+            await auth.signOut()
+            navigate('/signin')
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
   return (
     <nav className='bg-indigo-900'>
         <div className='flex h-20 justify-end'>
@@ -16,12 +27,7 @@ const Navbar = () => {
                     isActive
                         ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
                         : 'hover:bg-indigo-600 rounded-md text-white px-3 py-2'}>Add</NavLink>
-                <NavLink to='/signup'
-                className={({ isActive }) =>
-                    isActive
-                        ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
-                        : 'hover:bg-indigo-600 rounded-md text-white px-3 py-2'}>Logout</NavLink>
-                
+                <button onClick={ handleLogout } className='hover:bg-indigo-600 rounded-md text-white px-3 py-2'>Logout</button>
             </div>
         </div>
     </nav>

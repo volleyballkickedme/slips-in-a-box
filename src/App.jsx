@@ -9,13 +9,20 @@ import { Route,
   createRoutesFromElements,
   RouterProvider
 } from 'react-router-dom'
+import { auth } from './Components/firebase'
+import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
 function App() {
+  const [user, setUser] = useState(null)
+  useEffect(() => auth.onAuthStateChanged((user) => {
+    setUser(user)
+  }))
   const router = createBrowserRouter( 
     createRoutesFromElements(
       <>
-        <Route path='/' element={ <MainLayout />}>
-          <Route index element={ <Homepage />} />
+        <Route path='/' element={ user ? <MainLayout /> : <Navigate to='/signin' /> }>
+          <Route index element={ <Homepage /> } />
           <Route path='addSlip' element={ <AddSlipsPage />} />
         </Route>
         <Route path='/signup' element={ <SignUpPage /> } />
