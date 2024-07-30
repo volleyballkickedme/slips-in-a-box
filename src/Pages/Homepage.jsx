@@ -1,9 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from '../Components/Hero.jsx'
 import SlipStack from'../Components/SlipStack.jsx'
 import Generate from '../Components/Generate.jsx'
+import { doc, getDoc } from 'firebase/firestore'
+import { auth } from '../Components/firebase.js'
+import { useNavigate } from 'react-router-dom'
+import { db } from '../Components/firebase.js'
 
 const Homepage = () => {
+  const navigate = useNavigate()
+  const [userDetails, setUserDetails] = useState(null)
+  const fetchUserData = async () =>  {
+    auth.onAuthStateChanged(async (user) => {
+      const docRef = doc(db, "Users", user.uid)
+      const docSnap = await getDoc(docRef)
+      if(docSnap.exists()) {
+        setUserDetails(docSnap.data())
+      }
+      else {
+        console.log("User is not logged in")
+      }
+    })
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  async function handleLogout() {
+    try {
+      await auth.signOut()
+      navigate('/signin')
+    }
+    catch (error) {
+      console.log(error.message)
+    }
+  }
   /*array of size 4, with indices mapped as follows
   0: bfast
   1: lunch
@@ -13,11 +45,17 @@ const Homepage = () => {
   //pass in this array to slipstack component
   
   return (
-    <>
-        <Hero />
-        <SlipStack />
-        <Generate />
-    </>
+    <div>
+      { userDetails ?
+        <>
+          <Hero username={userDetails.username}/>
+          <SlipStack />
+          <Generate />
+        </> :
+        <p>Loading...</p>
+      }
+    </div>
+    
   )
 }
 

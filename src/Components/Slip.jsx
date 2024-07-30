@@ -11,7 +11,7 @@ const Slip = ( { children }) => {
         setExpanded((state) => !state)
     }
   return (
-    <div onClick={ expandSlip } className='flex w-20 h-15 m-3 flex-wrap p-3 bg-gray-300 rounded-lg'>
+    <div onClick={ expandSlip } className='flex h-24 w-48 m-3 flex-wrap p-3 bg-gray-300 rounded-lg'>
         { children }
         {/*popup window component should take 2 arguments
         first argument is the state variable, to check whether the popup should be shown

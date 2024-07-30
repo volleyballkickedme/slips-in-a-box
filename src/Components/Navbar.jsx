@@ -16,6 +16,12 @@ const Navbar = () => {
                     isActive
                         ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
                         : 'hover:bg-indigo-600 rounded-md text-white px-3 py-2'}>Add</NavLink>
+                <NavLink to='/signup'
+                className={({ isActive }) =>
+                    isActive
+                        ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
+                        : 'hover:bg-indigo-600 rounded-md text-white px-3 py-2'}>Logout</NavLink>
+                
             </div>
         </div>
     </nav>

@@ -8,16 +8,15 @@ import Slip from './Slip.jsx'
 //slipstack receives an array prop that contains all the 4 arrays of differing types
 //render all locations in the display, but eventually make it so that u generate a few from each one only to reduce rendering time
 const SlipStack = () => {
+  const locations = new Array(500)
+  locations.fill()
   return (
-    <section className='container'>
-      <div className='flex h-64 m-10 flex-wrap overflow-auto bg-gray-100 rounded-md'>
-        <Slip>{'Slip 1'}</Slip>
-        <Slip>{'Slip 2'}</Slip>
-        <Slip>{'Slip 3'}</Slip>
-        <Slip>{'Slip 4'}</Slip>
-        <Slip>{'Slip 5'}</Slip>
-        <Slip>{'Slip 6'}</Slip>
-      </div>
+    <section className='container h-300'>
+      <ul className='flex h-64 m-10 flex-wrap overflow-auto bg-gray-100 rounded-md'>
+        {locations.map(x => 
+          <li><Slip>{"slip 1"}</Slip></li>
+        )}
+      </ul>
     </section>
   )
 }
