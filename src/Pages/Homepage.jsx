@@ -38,7 +38,7 @@ const Homepage = () => {
       { userDetails ?
         <>
           <Hero username={ userDetails.username }/>
-          <SlipStack />
+          <SlipStack locationsArr={userDetails.locations}/>
           <Generate />
         </> :
         <p>Loading...</p>
