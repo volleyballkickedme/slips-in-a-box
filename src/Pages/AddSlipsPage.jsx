@@ -42,12 +42,13 @@ const AddSlipsPage = () => {
         //create new object
         const newLocation = {
           name: location,
-          type: type.substring(1),
+          type: type,
         };
         //create a new array and updatedLocations and copies over the content from the original array with ...locations, then appends newLocation
         const updatedLocations = [...locations, newLocation];
         //update the locations field with the new array
         await updateDoc(userRef, {
+          //the reason you cannot use locations.push is because push returns the length of the new array and not the array itself, instead it is better to use the method above
           locations: updatedLocations,
         });
         navigate('/')
@@ -80,10 +81,10 @@ const AddSlipsPage = () => {
                 <option value='' disabled>
                   Select an activity type
                 </option>
-                <option value='0Breakfast'>Breakfast</option>
-                <option value='1Lunch'>Lunch</option>
-                <option value='2Dinner'>Dinner</option>
-                <option value='3Other'>Others</option>
+                <option value='Breakfast'>Breakfast</option>
+                <option value='Lunch'>Lunch</option>
+                <option value='Dinner'>Dinner</option>
+                <option value='Others'>Others</option>
               </select>
             </div>
             <button type='submit' className='p-3 w-1/4 rounded-lg bg-gray-400'>Add</button>

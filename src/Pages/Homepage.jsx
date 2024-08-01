@@ -37,9 +37,9 @@ const Homepage = () => {
     <div>
       { userDetails ?
         <>
-          <Hero username={ userDetails.username }/>
-          <SlipStack locationsArr={userDetails.locations}/>
-          <Generate />
+          <Hero username={ userDetails.username } />
+          <SlipStack locationsArr={userDetails.locations} />
+          <Generate locations={userDetails.locations} />
         </> :
         <p>Loading...</p>
       }
