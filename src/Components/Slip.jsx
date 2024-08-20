@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import SlipDetails from './SlipDetails'
 
-const Slip = ( { children, name, type, refreshVariable, refreshFunction}) => {
+const Slip = ( { children, name, type, refreshFunction}) => {
     const [expanded, setExpanded] = useState(false)
 
     function expandSlip() {
