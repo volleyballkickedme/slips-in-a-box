@@ -4,15 +4,19 @@
 
 import React from 'react'
 import Slip from './Slip.jsx'
+import { useState } from 'react'
 
 //slipstack receives an array prop that contains all the 4 arrays of differing types
 //render all locations in the display, but eventually make it so that u generate a few from each one only to reduce rendering time
-const SlipStack = ({locationsArr}) => {
+const SlipStack = ({locationsArr, refreshFunction, refreshVariable}) => {
+  const [refresh, setRefresh] = useState(refreshVariable)
+
   return (
     <section className='container h-300'>
       <ul className='flex h-64 m-10 flex-wrap overflow-auto bg-gray-100 rounded-md'>
         {locationsArr.map((place) => 
-          <li><Slip name={place.name} type={place.type}>{place.name}</Slip></li>
+          <li><Slip name={place.name} type={place.type} refreshFunction = { refreshFunction }>
+            {place.name}</Slip></li>
         )}
       </ul>
     </section>

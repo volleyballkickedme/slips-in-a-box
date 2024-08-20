@@ -8,6 +8,12 @@ import { db } from '../Components/firebase.js'
 
 const Homepage = () => {
   const [userDetails, setUserDetails] = useState(null)
+  //refresh state variable triggers a refreshing of the hompage whenever it is updated
+  const [refresh, setRefresh] = useState(0)
+  const refreshPage = () => {
+    setRefresh(Math.random())
+    console.log(refresh)
+  }
   const fetchUserData = async () =>  {
     auth.onAuthStateChanged(async (user) => {
       const docRef = doc(db, "Users", user.uid)
@@ -21,9 +27,10 @@ const Homepage = () => {
     })
   }
 
+  //include the refresh state variable in the dependency array
   useEffect(() => {
     fetchUserData()
-  }, [])
+  }, [refresh])
 
   /*array of size 4, with indices mapped as follows
   0: bfast
@@ -32,13 +39,13 @@ const Homepage = () => {
   3: others */
 
   //pass in this array to slipstack component
-  
+  //pass in the function to update the refresh state variable into the child component so that the child can trigger the refresh
   return (
     <div>
       { userDetails ?
         <>
           <Hero username={ userDetails.username } />
-          <SlipStack locationsArr={userDetails.locations} />
+          <SlipStack locationsArr={userDetails.locations} refreshVariable = { refresh } refreshFunction = { refreshPage }/>
           <Generate locations={userDetails.locations} />
         </> :
         <p>Loading...</p>
