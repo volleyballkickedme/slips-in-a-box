@@ -3,33 +3,36 @@ import Hero from '../Components/Hero.jsx'
 import SlipStack from'../Components/SlipStack.jsx'
 import Generate from '../Components/Generate.jsx'
 import { doc, getDoc } from 'firebase/firestore'
-import { auth } from '../Components/firebase.js'
 import { db } from '../Components/firebase.js'
 
-const Homepage = () => {
+const Homepage = ({ user }) => {
   const [userDetails, setUserDetails] = useState(null)
+  const [currentUser, setCurrentUser] = useState(user)
   //refresh state variable triggers a refreshing of the hompage whenever it is updated
   const [refresh, setRefresh] = useState(0)
   const refreshPage = () => {
     setRefresh(Math.random())
-    console.log(refresh)
-  }
-  const fetchUserData = async () =>  {
-    auth.onAuthStateChanged(async (user) => {
-      const docRef = doc(db, "Users", user.uid)
-      const docSnap = await getDoc(docRef)
-      if(docSnap.exists()) {
-        setUserDetails(docSnap.data())
-      }
-      else {
-        console.log("User is not logged in")
-      }
-    })
   }
 
   //include the refresh state variable in the dependency array
   useEffect(() => {
-    fetchUserData()
+    setCurrentUser(user)
+    if(currentUser) {
+      const fetchUserData = async () =>  {
+        const docRef = doc(db, "Users", currentUser.uid)
+        const docSnap = await getDoc(docRef)
+        if(docSnap.exists()) {
+          setUserDetails(docSnap.data())
+        }
+        else {
+          console.log("User is not logged in")
+        }
+      }
+      fetchUserData()
+    }
+    else {
+      console.log('no user authenticated')
+    }
   }, [refresh])
 
   /*array of size 4, with indices mapped as follows
