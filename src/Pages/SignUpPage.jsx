@@ -24,10 +24,8 @@ const SignUpPage = () => {
                 await setDoc(doc(db, "Users", user.uid), {
                     email: user.email,
                     username: username,
-                    locations: []
-                }).then(
-                    navigate('/signin')
-                )
+                })
+                navigate('/signin')
             }
         }
         catch (error) {
