@@ -10,7 +10,7 @@ const Slip = ( { children, name, type, refreshFunction}) => {
     function expandSlip() {
         setExpanded((prevState) => !prevState)
     }
-
+adfsdfsf
   return (
     <div onClick={ expandSlip } className='flex h-24 w-48 m-3 flex-wrap p-3 bg-gray-300 rounded-lg'>
         { children }
