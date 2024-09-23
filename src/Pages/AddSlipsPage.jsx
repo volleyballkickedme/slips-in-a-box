@@ -1,5 +1,5 @@
 //page that pops up when you click on the add slips
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { doc, addDoc } from 'firebase/firestore';
 import { db, auth } from '../Components/firebase';
 import { useNavigate } from 'react-router-dom';
