@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import SlipDetails from './SlipDetails'
 
-const Slip = ( { children, name, type, refreshFunction}) => {
+const Slip = () => {
     const [expanded, setExpanded] = useState(false)
 
     function expandSlip() {
@@ -17,7 +17,7 @@ adfsdfsf
         {/*popup window component should take 2 arguments
         first argument is the state variable, to check whether the popup should be shown
         second argument is the function that is called when you toggle the close popup option*/}
-        <SlipDetails expanded={ expanded } closePopup={ expandSlip } name={name} type={type} refreshFunction = { refreshFunction }/>
+        <SlipDetails expanded={ expanded } closePopup={ expandSlip }/>
     </div>
   )
 }

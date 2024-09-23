@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Generate = ({ locations }) => {
+const Generate = () => {
   const[category, setCategory] = useState('Breakfast')
   const[generate, setGenerate] = useState('Breakfast')
   const[index, setIndex] = useState(0)
@@ -15,8 +15,6 @@ const Generate = ({ locations }) => {
   //when you click the category bar you generate a filtered list of locations
   //when you click the generate button you lock that in. You need this 2 step process so that
   //the type doesnt change immediately when you click the category bar
-  const filteredLocations = locations.filter((location) => location.type == generate)
-  const poolSize = filteredLocations.length
 
   //function to generate random number
   function getRandomNumber(min, max) {
@@ -33,7 +31,6 @@ const Generate = ({ locations }) => {
   function handleClick() {
     setIndex(getRandomNumber(0, poolSize))
     setGenerate(category)
-    setOutput(filteredLocations[index].name)
   }
 
   return (

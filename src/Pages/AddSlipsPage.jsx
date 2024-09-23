@@ -1,11 +1,12 @@
 //page that pops up when you click on the add slips
 import React, { useState, useEffect } from 'react';
-import { doc } from 'firebase/firestore';
+import { doc, addDoc } from 'firebase/firestore';
 import { db, auth } from '../Components/firebase';
 import { useNavigate } from 'react-router-dom';
+import { collection } from 'firebase/firestore';
 
 const AddSlipsPage = () => {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState([]);
   const [type, setType] = useState('');
   
   const navigate = useNavigate()
@@ -19,11 +20,10 @@ const AddSlipsPage = () => {
         const userRef = doc(db, 'Users', user.uid);
 
         //add task to locations subcollection
-        await userRef.collection("locations").add({
+        await addDoc(collection(userRef, "locations"), {
           location: location,
           type: type
         });
-        
         //navigate back to home page after adding
         navigate('/')
       }

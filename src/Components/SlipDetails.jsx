@@ -12,7 +12,6 @@ const SlipDetails = ({ expanded, closePopup, name, type}) => {
     /*the ReactDOM.createPortal method takes in 2 arguments, 
         1. the element that is going to go through the portal
         2. the portal endpoint, which you have already defined in your HTML file and can be accessed with getElementById*/
-        const [locations, setLocations] = useState([]);
       
         useEffect(() => {
           const fetchUserLocations = async () => {
@@ -22,7 +21,7 @@ const SlipDetails = ({ expanded, closePopup, name, type}) => {
                 const userRef = doc(db, 'Users', user.uid);
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
-                  setLocations(userSnap.data().locations || []);
+                  
                 } else {
                   console.log('No such document!');
                 }
