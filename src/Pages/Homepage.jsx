@@ -76,7 +76,7 @@ const Homepage = () => {
         <>
           <Hero username={ userUsername } />
           <SlipStack locationsArray = { locationsArray }/>
-          <Generate />
+          <Generate locationsArray = { locationsArray } poolSize={ locationsArray.length } />
         </>
     </div>
     
