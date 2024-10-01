@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Hero from '../Components/Hero.jsx'
 import SlipStack from'../Components/SlipStack.jsx'
 import Generate from '../Components/Generate.jsx'
-import { doc, getDocs, collection, onSnapshot } from 'firebase/firestore'
+import { doc, collection, onSnapshot, getDoc } from 'firebase/firestore'
 import { auth, db } from '../Components/firebase.js'
 
 const Homepage = () => {
@@ -12,19 +12,39 @@ const Homepage = () => {
   useEffect(() => {
     const user = auth.currentUser
     if(user) {
-      setUserUsername(user.username)
-      const fetchUserData = async () =>  {
-        const userRef = doc(db, "Users", user.uid)
-        const locationsRef = collection(userRef, "locations")
-        
-        subscribeToLocations(locationsRef)
-      }
-      fetchUserData()
+      fetchUserData(user)
     }
     else {
       console.log('no user authenticated')
     }
   }, [])
+
+  //function to fetch user data
+  const fetchUserData = async (user) =>  {
+    //doc and collection return references to the respective data structures
+    const userRef = doc(db, "Users", user.uid)
+    const locationsRef = collection(userRef, "locations")
+    
+    fetchUserDataFromRef(userRef)
+    subscribeToLocations(locationsRef)
+  }
+
+  //function to fetch user data from userRef
+  const fetchUserDataFromRef = async (userRef) => {
+    //getDoc returns a snapshot of the document data; getDocs returns an array of document snapshots
+    const userSnap = await getDoc(userRef)
+    try {
+      if(userSnap.exists()) {
+        //snapshot data is accessed with .data()
+        const username = userSnap.data().username
+        setUserUsername(username)
+      } else {
+        console.log("No such user profile exists")
+      }
+    } catch (error) {
+      console.log("Error fetching user profile")
+    }
+  }
 
   //function to watch for location snapshot updated
   const subscribeToLocations = (locationsRef) => {
