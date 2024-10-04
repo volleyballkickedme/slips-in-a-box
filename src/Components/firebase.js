@@ -1,24 +1,21 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAxUlh-RgC3_b2Uq-Hq7p39ZWAOV1Av-Cg",
-  authDomain: "slips-in-a-box.firebaseapp.com",
-  projectId: "slips-in-a-box",
-  storageBucket: "slips-in-a-box.appspot.com",
-  messagingSenderId: "1086595556975",
-  appId: "1:1086595556975:web:58067fdc442dd832308f9a"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+const db = getFirestore(app)
 
 //getAuth registers the user to the firebase console
-export const auth = getAuth();
-export const db=getFirestore(app)
+export { auth, db }
 export default app;
