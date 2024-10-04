@@ -1,4 +1,4 @@
-# Date Idea Picker Web App
+# Slips in a box
 
 A fun web app built with React, Tailwind, and Firebase that helps you decide where to go on your next date! Users can add date ideas as if writing them on slips of paper and putting them into a box. On command, the app will randomly select one of the date ideas, making the decision for you.
 
@@ -30,8 +30,8 @@ To get the app running locally:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/date-idea-picker.git
-    cd date-idea-picker
+    git clone https://github.com/your-username/slips-in-a-box.git
+    cd slips-in-a-box
     ```
 
 2. **Install dependencies:**
