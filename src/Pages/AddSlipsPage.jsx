@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection } from 'firebase/firestore';
 
 const AddSlipsPage = () => {
-  const [location, setLocation] = useState([]);
+  const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   
   const navigate = useNavigate()

@@ -4,7 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import SlipDetails from './SlipDetails'
 
-const Slip = ({ name, type }) => {
+const Slip = ({ name, type, id }) => {
     const [expanded, setExpanded] = useState(false)
 
     function expandSlip() {
@@ -17,7 +17,7 @@ const Slip = ({ name, type }) => {
         {/*popup window component should take 2 arguments
         first argument is the state variable, to check whether the popup should be shown
         second argument is the function that is called when you toggle the close popup option*/}
-        <SlipDetails name={ name } type={ type } expanded={ expanded } closePopup={ expandSlip }/>
+        <SlipDetails name={ name } type={ type } id={ id } expanded={ expanded } closePopup={ expandSlip }/>
     </div>
   )
 }

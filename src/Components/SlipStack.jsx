@@ -14,7 +14,7 @@ const SlipStack = ({ locationsArray }) => {
         {
           locationsArray.map((location, index) => (
             <li key={index}>
-              <Slip name={location.name} type={location.type} />
+              <Slip name={location.name} type={location.type} id={ location.id } />
             </li>
           ))
         }

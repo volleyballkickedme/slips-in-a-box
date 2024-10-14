@@ -69,7 +69,8 @@ const Homepage = () => {
     return snapshot.docs.map((locationDoc) => {
       return {
         name: locationDoc.data().location,
-        type: locationDoc.data().type
+        type: locationDoc.data().type,
+        id: locationDoc.id
       }
     })
   }

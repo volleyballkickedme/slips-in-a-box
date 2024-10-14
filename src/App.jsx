@@ -9,10 +9,6 @@ import { Route,
   createRoutesFromElements,
   RouterProvider
 } from 'react-router-dom'
-import { auth } from './Components/firebase'
-import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
-import { onAuthStateChanged } from 'firebase/auth'
 
 function App() {
     const router = createBrowserRouter( 
