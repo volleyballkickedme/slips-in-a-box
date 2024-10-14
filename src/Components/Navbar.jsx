@@ -18,6 +18,7 @@ const Navbar = () => {
         <div className='flex h-20 justify-end'>
             <div className= 'flex justify-stretch items-center'>
                 <NavLink to='/home'
+                end
                 className={({ isActive }) =>
                 isActive
                     ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
