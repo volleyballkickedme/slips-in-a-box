@@ -10,15 +10,18 @@ const Homepage = () => {
   const [locationsArray, setLocationsArray] = useState([])
 
   useEffect(() => {
-    const user = auth.currentUser
-    if(user) {
-      fetchUserData(user)
-    }
-    else {
-      console.log('no user authenticated')
-    }
-  }, [])
-
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        fetchUserData(user);
+      } else {
+        console.log('no user authenticated');
+      }
+    });
+  
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+  
   //function to fetch user data
   const fetchUserData = async (user) =>  {
     //doc and collection return references to the respective data structures
