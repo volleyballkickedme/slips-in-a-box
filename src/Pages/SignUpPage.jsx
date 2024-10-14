@@ -16,23 +16,27 @@ const SignUpPage = () => {
     //the createUserWithEmailAndPassword method stores the user profile in the auth object
     //the current user can then be accessed with auth.currentUser
     const handleRegister = async (e) => {
-        e.preventDefault()
+        e.preventDefault(); // Prevent default form submission
+    
         try {
-            await createUserWithEmailAndPassword(auth, email, password)
-            const user = auth.currentUser
-            if(user) {
-                await setDoc(doc(db, "Users", user.id), {
+            // Create user with email and password
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user; // Get the user object from the credential
+    
+            if (user) {
+                // Set user document in Firestore
+                await setDoc(doc(db, "Users", user.uid), { // Use user.uid instead of user.id
                     email: user.email,
                     username: username,
-                })
-                navigate('/signin')
+                });
+                // Navigate to the sign-in page
+                navigate('/signin');
             }
+        } catch (error) {
+            console.log("Registration error:", error.message); // Log any errors
         }
-        catch (error) {
-            console.log(error.message)
-        }
-
-    }
+    };
+    
 
   return (
     <div className='flex flex-col w-screen h-screen items-center justify-center bg-indigo-800'>
