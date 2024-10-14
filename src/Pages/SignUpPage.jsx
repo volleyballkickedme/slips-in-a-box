@@ -21,7 +21,7 @@ const SignUpPage = () => {
             await createUserWithEmailAndPassword(auth, email, password)
             const user = auth.currentUser
             if(user) {
-                await setDoc(doc(db, "Users", user.uid), {
+                await setDoc(doc(db, "Users", user.id), {
                     email: user.email,
                     username: username,
                 })
