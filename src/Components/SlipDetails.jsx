@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 /*your popup window should take in 2 pops, a boolean state variable to check whether the popup is visible, 
 and a function to toggle that state back to false when you close the popup*/
-const SlipDetails = ({ expanded, closePopup, name, type}) => {
+const SlipDetails = ({ name, type, expanded, closePopup}) => {
       /*if the state variable is false the popup should not be visible*/
       if(!expanded) return null;
       /*the ReactDOM.createPortal method takes in 2 arguments, 

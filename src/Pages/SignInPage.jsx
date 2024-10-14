@@ -17,7 +17,7 @@ const SignInPage = () => {
         e.preventDefault()
         try{
             await signInWithEmailAndPassword(auth, email, password)
-            navigate('/')
+            navigate('/home')
         }
         catch(error) {
             console.log(error.message)

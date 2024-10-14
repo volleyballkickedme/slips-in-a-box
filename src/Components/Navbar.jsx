@@ -17,12 +17,12 @@ const Navbar = () => {
     <nav className='bg-indigo-900'>
         <div className='flex h-20 justify-end'>
             <div className= 'flex justify-stretch items-center'>
-                <NavLink to='/'
+                <NavLink to='/home'
                 className={({ isActive }) =>
                 isActive
                     ? 'bg-indigo-700 text-white rounded-md px-3 py-2'
                     : 'hover:bg-indigo-600 text-white rounded-md px-3 py-2'}>Home</NavLink>
-                <NavLink to='/addSlip'
+                <NavLink to='/home/addSlip'
                 className={({ isActive }) =>
                     isActive
                         ? 'bg-indigo-700 text-white rounded-md px-3 py-2'

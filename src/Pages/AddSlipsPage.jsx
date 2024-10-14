@@ -25,7 +25,7 @@ const AddSlipsPage = () => {
           type: type
         });
         //navigate back to home page after adding
-        navigate('/')
+        navigate('/home')
       }
     } catch (error) {
       console.error('Error updating document: ', error);
