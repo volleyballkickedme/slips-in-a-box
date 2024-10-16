@@ -15,7 +15,7 @@ A fun web app built with React, Tailwind, and Firebase that helps you decide whe
 
 ## Live Demo
 
-The app is live and accessible here: [slips-in-a-box](https://66ff8ba4764d00bad0d60615--boxofslips.netlify.app/)
+The app is live and accessible here: [slips-in-a-box](https://670cfc5a2b43df0008230c79--boxofslips.netlify.app/)
 
 ## Setup Instructions
 
